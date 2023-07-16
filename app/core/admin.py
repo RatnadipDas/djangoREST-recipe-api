@@ -19,6 +19,7 @@ class UserAdmin(BaseUserAdmin):
         "is_staff",
         "is_superuser",
         "last_login",
+        "date_joined",
     )
 
     fieldsets = (
@@ -27,6 +28,7 @@ class UserAdmin(BaseUserAdmin):
             {
                 "fields": (
                     "email",
+                    "name",
                     "password",
                 ),
             },
@@ -44,12 +46,12 @@ class UserAdmin(BaseUserAdmin):
         (
             _("Important dates"),
             {
-                "fields": ("last_login",),
+                "fields": ("last_login", "date_joined",),
             },
         ),
     )
 
-    readonly_fields = ("last_login",)
+    readonly_fields = ("last_login", "date_joined",)
 
     add_fieldsets = (
         (

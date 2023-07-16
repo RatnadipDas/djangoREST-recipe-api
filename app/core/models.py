@@ -3,6 +3,8 @@ Database models.
 """
 
 from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -37,6 +39,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     """User in the system."""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
+    date_joined = models.DateTimeField(
+        _('date joined'), default=timezone.now, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
